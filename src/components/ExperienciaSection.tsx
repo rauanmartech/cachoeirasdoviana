@@ -1,6 +1,7 @@
-import { Mountain, Compass, TreePine, BookOpen } from "lucide-react";
+import { useState, useRef } from "react";
+import { Mountain, Compass, TreePine, BookOpen, Play, Pause, Volume2, VolumeX } from "lucide-react";
 import { motion } from "framer-motion";
-import trailImg from "@/assets/trail-path.jpg";
+import experienceVideo from "@/assets/Força.mp4";
 
 const cards = [
   { icon: Mountain, title: "Trilhas e Níveis", desc: "Percursos para todos os profiles, do iniciante ao aventureiro, com sinalização clara em cada etapa." },
@@ -10,6 +11,44 @@ const cards = [
 ];
 
 const ExperienciaSection = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+  const [volume, setVolume] = useState(1);
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseFloat(e.target.value);
+    setVolume(value);
+    if (videoRef.current) {
+      videoRef.current.volume = value;
+      if (value > 0) {
+        videoRef.current.muted = false;
+        setIsMuted(false);
+      } else {
+        videoRef.current.muted = true;
+        setIsMuted(true);
+      }
+    }
+  };
+
   return (
     <section className="py-24 px-6 bg-[#fdfbf6] relative overflow-hidden">
       <div className="max-w-6xl mx-auto relative z-10">
@@ -33,20 +72,70 @@ const ExperienciaSection = () => {
             </p>
           </motion.div>
           <motion.div
-            className="leaf-shape-1 overflow-hidden shadow-2xl"
+            className="leaf-shape-1 overflow-hidden shadow-2xl relative group"
             initial={{ opacity: 0, scale: 0.95, y: 30 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 1.2, ease: [0.21, 0.47, 0.32, 0.98] }}
           >
-            <motion.img
-              src={trailImg}
-              alt="Trilha estruturada no Circuito de Cachoeiras de Rio Acima"
-              className="w-full h-80 object-cover"
-              whileHover={{ scale: 1.1 }}
-              transition={{ duration: 0.8 }}
-              loading="lazy"
+            <video
+              ref={videoRef}
+              src={experienceVideo}
+              className="w-full h-80 object-cover cursor-pointer"
+              autoPlay
+              loop
+              muted
+              playsInline
+              onClick={togglePlay}
             />
+
+            {/* Custom Controls Overlay */}
+            <div
+              className={`absolute inset-0 bg-black/20 flex flex-col justify-end p-6 transition-opacity duration-500 ${isPlaying ? "opacity-0 group-hover:opacity-100" : "opacity-100"
+                }`}
+            >
+              <div className="flex items-center justify-between pointer-events-auto">
+                <button
+                  onClick={togglePlay}
+                  className="w-14 h-14 flex items-center justify-center bg-white/20 backdrop-blur-md rounded-full hover:bg-white/40 active:scale-95 transition-all shadow-lg border border-white/30"
+                  aria-label={isPlaying ? "Pause" : "Play"}
+                >
+                  {isPlaying ? (
+                    <Pause className="text-white fill-white w-6 h-6" />
+                  ) : (
+                    <Play className="text-white fill-white w-6 h-6 ml-1" />
+                  )}
+                </button>
+
+                <div className="flex items-center gap-3 bg-black/40 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-white/10 shadow-xl">
+                  <button
+                    onClick={toggleMute}
+                    className="text-white hover:text-sand transition-colors outline-none"
+                    aria-label={isMuted ? "Unmute" : "Mute"}
+                  >
+                    {isMuted || volume === 0 ? (
+                      <VolumeX className="w-5 h-5" />
+                    ) : (
+                      <Volume2 className="w-5 h-5" />
+                    )}
+                  </button>
+                  <div className="flex items-center group/volume relative h-6">
+                    <input
+                      type="range"
+                      min="0"
+                      max="1"
+                      step="0.05"
+                      value={isMuted ? 0 : volume}
+                      onChange={handleVolumeChange}
+                      className="w-24 h-1 bg-white/30 rounded-full appearance-none cursor-pointer accent-white transition-all hover:bg-white/50"
+                      style={{
+                        background: `linear-gradient(to right, white ${(isMuted ? 0 : volume) * 100}%, rgba(255, 255, 255, 0.3) ${(isMuted ? 0 : volume) * 100}%)`
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
