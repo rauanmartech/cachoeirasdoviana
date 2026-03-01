@@ -110,22 +110,7 @@
     text-wrap: balance;
   }
 
-  @keyframes subtle-float {
-
-    0%,
-    100% {
-      transform: translateY(0) rotate(var(--tw-rotate, 0deg));
-    }
-
-    50% {
-      transform: translateY(-20px) rotate(calc(var(--tw-rotate, 0deg) + 2deg));
-    }
-  }
-
-  .animate-subtle-float {
-    animation: subtle-float 10s ease-in-out infinite;
-  }
-
+  /* Simplified leaf shapes */
   .leaf-shape-1 {
     border-radius: 40px 0px 40px 0px;
   }
@@ -135,7 +120,6 @@
   }
 
   .logo-sand-overlay {
-    /* Approximating #EAE2D2 using CSS filters */
     filter: brightness(0) saturate(100%) invert(98%) sepia(5%) saturate(543%) hue-rotate(338deg) brightness(101%) contrast(85%);
   }
 }

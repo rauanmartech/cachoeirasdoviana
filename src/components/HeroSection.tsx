@@ -26,26 +26,24 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {videos.map((src, index) => (
+      {/* Simplified video rendering */}
+      <div className="absolute inset-0">
         <video
-          key={src}
-          ref={videoRefs[index]}
+          src={videos[0]}
+          autoPlay
+          loop
           muted
           playsInline
-          onEnded={handleVideoEnd}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[3000ms] ${activeVideo === index ? "opacity-100" : "opacity-0"
-            }`}
-        >
-          <source src={src} type="video/mp4" />
-        </video>
-      ))}
+          className="w-full h-full object-cover"
+        />
+      </div>
       <div className="absolute inset-0 bg-forest/70" />
 
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
         >
           <div className="flex items-center justify-center gap-2 mb-6">
             <TreePine className="w-5 h-5 text-sand" />
@@ -56,61 +54,29 @@ const HeroSection = () => {
           </div>
         </motion.div>
 
-        <motion.h1
-          className="font-display text-4xl md:text-6xl lg:text-7xl text-primary-foreground mb-6 leading-tight"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-        >
+        <h1 className="font-display text-4xl md:text-6xl lg:text-7xl text-primary-foreground mb-6 leading-tight">
           Viva a Experiência do <span className="text-sand italic">Circuito de Cachoeiras</span> em Rio Acima
-        </motion.h1>
+        </h1>
 
-        <motion.p
-          className="text-primary-foreground/80 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-body font-light leading-relaxed"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-        >
+        <p className="text-primary-foreground/80 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-body font-light leading-relaxed">
           Natureza preservada, trilhas estruturadas e uma nova fase de organização.
-        </motion.p>
+        </p>
 
-        <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-        >
-          <Button variant="hero" size="lg" className="text-base px-8 py-6 group overflow-hidden relative" asChild>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button variant="hero" size="lg" className="text-base px-8 py-6" asChild>
             <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer">
-              <motion.div
-                className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"
-              />
-              <MapPin className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+              <MapPin className="w-5 h-5 mr-2" />
               Como Chegar
             </a>
           </Button>
-          <Button variant="hero-outline" size="lg" className="text-base px-8 py-6 group" asChild>
+          <Button variant="hero-outline" size="lg" className="text-base px-8 py-6" asChild>
             <a href="https://wa.me/5531999999999" target="_blank" rel="noopener noreferrer">
-              <Phone className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
+              <Phone className="w-5 h-5 mr-2" />
               Falar no WhatsApp
             </a>
           </Button>
-        </motion.div>
+        </div>
       </div>
-
-      <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 1 }}
-      >
-        <span className="text-sand/40 text-[10px] uppercase tracking-widest">Scroll</span>
-        <motion.div
-          className="w-[1px] h-12 bg-gradient-to-b from-sand/40 to-transparent"
-          animate={{ height: [0, 48, 0], opacity: [0, 1, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </motion.div>
 
     </section>
   );

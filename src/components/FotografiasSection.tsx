@@ -51,22 +51,19 @@ const FotografiasSection = () => {
               onClick={() => setSelected(i)}
               className={`group relative overflow-hidden aspect-square cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary ${i % 2 === 0 ? "leaf-shape-1" : "leaf-shape-2"
                 }`}
-              initial={{ opacity: 0, y: 30, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, delay: i * 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
-              whileHover={{ scale: 0.98 }}
+              transition={{ duration: 0.5, delay: i * 0.05 }}
             >
-              <motion.img
+              <img
                 src={photo.src}
                 alt={photo.alt}
-                className="w-full h-full object-cover"
-                whileHover={{ scale: 1.15 }}
-                transition={{ duration: 0.6 }}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-forest/0 group-hover:bg-forest/40 transition-colors duration-300 flex items-end">
-                <span className="text-primary-foreground font-body text-sm font-medium p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">
+                <span className="text-primary-foreground font-body text-sm font-medium p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   {photo.caption}
                 </span>
               </div>

@@ -73,10 +73,10 @@ const ExperienciaSection = () => {
           </motion.div>
           <motion.div
             className="leaf-shape-1 overflow-hidden shadow-2xl relative group"
-            initial={{ opacity: 0, scale: 0.95, y: 30 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 1.2, ease: [0.21, 0.47, 0.32, 0.98] }}
+            transition={{ duration: 0.6 }}
           >
             <video
               ref={videoRef}
@@ -142,12 +142,11 @@ const ExperienciaSection = () => {
           {cards.map((card, index) => (
             <motion.div
               key={card.title}
-              className="bg-background leaf-shape-2 p-6 border border-border hover:shadow-xl transition-all duration-300"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              className="bg-background leaf-shape-2 p-6 border border-border transition-all duration-300"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, delay: index * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
-              whileHover={{ y: -5, borderColor: "var(--forest-light)" }}
+              transition={{ duration: 0.5, delay: index * 0.05 }}
             >
               <card.icon className="w-8 h-8 text-forest-light mb-4" />
               <h3 className="font-display text-lg text-foreground mb-2">{card.title}</h3>

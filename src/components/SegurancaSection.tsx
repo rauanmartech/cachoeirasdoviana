@@ -34,13 +34,13 @@ const SegurancaSection = () => {
             <motion.div
               key={point.title}
               className="text-center group"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, delay: index * 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
+              transition={{ duration: 0.5, delay: index * 0.05 }}
             >
-              <div className="w-16 h-16 rounded-full bg-sand flex items-center justify-center mx-auto mb-6 group-hover:bg-sand/80 transition-colors duration-300 shadow-sm group-hover:shadow-md">
-                <point.icon className="w-8 h-8 text-earth group-hover:scale-110 transition-transform duration-300" />
+              <div className="w-16 h-16 rounded-full bg-sand flex items-center justify-center mx-auto mb-6 transition-colors duration-300 shadow-sm">
+                <point.icon className="w-8 h-8 text-earth transition-transform duration-300" />
               </div>
               <h3 className="font-display text-xl text-foreground mb-3">{point.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">{point.desc}</p>

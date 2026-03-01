@@ -36,15 +36,14 @@ const NovaFaseSection = () => {
           {features.map((item, index) => (
             <motion.div
               key={item.title}
-              className="bg-card leaf-shape-1 p-8 text-center border border-border hover:shadow-2xl transition-all duration-500 group"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              className="bg-card leaf-shape-1 p-8 text-center border border-border transition-all duration-300 group"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, delay: index * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
-              whileHover={{ y: -10, scale: 1.02 }}
+              transition={{ duration: 0.5, delay: index * 0.05 }}
             >
               <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-primary/20 transition-colors duration-300">
-                <item.icon className="w-7 h-7 text-primary group-hover:scale-110 transition-transform duration-300" />
+                <item.icon className="w-7 h-7 text-primary transition-transform duration-300" />
               </div>
               <h3 className="font-display text-xl text-foreground mb-3">{item.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>

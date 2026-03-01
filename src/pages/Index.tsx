@@ -59,23 +59,22 @@ const Index = () => {
   return (
     <>
       <Header />
-      <main className="relative">
-        {/* Only Hero is sticky, NovaFase will slide over it */}
-        <div id="hero" className="sticky top-0 z-0 h-screen overflow-hidden">
+      <main className="relative bg-background">
+        {/* Simplified layout for better performance */}
+        <div id="hero" className="relative h-screen md:sticky md:top-0 z-0 overflow-hidden">
           <HeroSection />
         </div>
 
-        {/* NovaFase slides over Hero with rounded top and contained decorative leaves */}
-        <div id="nova-fase" className="relative z-10 bg-background shadow-[0_-40px_100px_rgba(0,0,0,0.1)] rounded-t-[80px] md:rounded-t-[120px] overflow-hidden">
-          <div className="relative pt-24 pb-12 px-6">
-            <DecorativeBranch className="top-0 -left-16" rotate={15} />
-            <DecorativeBranch className="top-10 -right-16" rotate={-160} />
+        {/* Removed complex overlaps and decorative elements on mobile */}
+        <div id="nova-fase" className="relative z-10 bg-background shadow-none md:shadow-[0_-40px_100px_rgba(0,0,0,0.1)] md:rounded-t-[120px] overflow-hidden">
+          <div className="relative pt-16 md:pt-24 pb-12 px-6">
+            <DecorativeBranch className="hidden md:block top-0 -left-16" rotate={15} />
+            <DecorativeBranch className="hidden md:block top-10 -right-16" rotate={-160} />
             <NovaFaseSection />
           </div>
         </div>
 
-        {/* The rest of the sections follow normal scroll flow with solid backgrounds to hide video */}
-        <div id="experiencia" className="relative z-20 bg-[#fdfbf6]">
+        <div id="experiencia" className="relative z-20 bg-background md:bg-[#fdfbf6]">
           <ExperienciaSection />
         </div>
 
@@ -83,7 +82,7 @@ const Index = () => {
           <FotografiasSection />
         </div>
 
-        <div id="grupos" className="relative z-20 bg-primary shadow-xl">
+        <div id="grupos" className="relative z-20 bg-primary">
           <GruposSection />
         </div>
 
