@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 20% 97%;
+    --foreground: 150 25% 10%;
+
+    --card: 40 15% 95%;
+    --card-foreground: 150 25% 10%;
+
+    --popover: 40 20% 97%;
+    --popover-foreground: 150 25% 10%;
+
+    --primary: 152 38% 22%;
+    --primary-foreground: 40 20% 97%;
+
+    --secondary: 35 25% 82%;
+    --secondary-foreground: 150 25% 15%;
+
+    --muted: 35 15% 90%;
+    --muted-foreground: 150 10% 40%;
+
+    --accent: 35 40% 72%;
+    --accent-foreground: 150 25% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 35 15% 85%;
+    --input: 35 15% 85%;
+    --ring: 152 38% 22%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 40 20% 97%;
+    --sidebar-foreground: 150 25% 10%;
+    --sidebar-primary: 152 38% 22%;
+    --sidebar-primary-foreground: 40 20% 97%;
+    --sidebar-accent: 35 15% 90%;
+    --sidebar-accent-foreground: 150 25% 10%;
+    --sidebar-border: 35 15% 85%;
+    --sidebar-ring: 152 38% 22%;
+
+    /* Custom tokens */
+    --earth: 30 30% 28%;
+    --earth-foreground: 40 20% 97%;
+    --sand: 35 30% 88%;
+    --forest: 152 45% 16%;
+    --forest-light: 150 30% 35%;
+    --hero-overlay: 150 30% 8%;
+  }
+
+  .dark {
+    --background: 150 20% 6%;
+    --foreground: 40 20% 95%;
+    --card: 150 20% 8%;
+    --card-foreground: 40 20% 95%;
+    --popover: 150 20% 8%;
+    --popover-foreground: 40 20% 95%;
+    --primary: 150 35% 45%;
+    --primary-foreground: 150 20% 6%;
+    --secondary: 35 15% 20%;
+    --secondary-foreground: 40 20% 95%;
+    --muted: 150 15% 15%;
+    --muted-foreground: 40 10% 60%;
+    --accent: 35 25% 35%;
+    --accent-foreground: 40 20% 95%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 150 15% 15%;
+    --input: 150 15% 15%;
+    --ring: 150 35% 45%;
+    --sidebar-background: 150 20% 6%;
+    --sidebar-foreground: 40 20% 95%;
+    --sidebar-primary: 150 35% 45%;
+    --sidebar-primary-foreground: 150 20% 6%;
+    --sidebar-accent: 150 15% 15%;
+    --sidebar-accent-foreground: 40 20% 95%;
+    --sidebar-border: 150 15% 15%;
+    --sidebar-ring: 150 35% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  @keyframes subtle-float {
+
+    0%,
+    100% {
+      transform: translateY(0) rotate(var(--tw-rotate, 0deg));
+    }
+
+    50% {
+      transform: translateY(-20px) rotate(calc(var(--tw-rotate, 0deg) + 2deg));
+    }
+  }
+
+  .animate-subtle-float {
+    animation: subtle-float 10s ease-in-out infinite;
+  }
+
+  .leaf-shape-1 {
+    border-radius: 40px 0px 40px 0px;
+  }
+
+  .leaf-shape-2 {
+    border-radius: 0px 40px 0px 40px;
+  }
+
+  .logo-sand-overlay {
+    /* Approximating #EAE2D2 using CSS filters */
+    filter: brightness(0) saturate(100%) invert(98%) sepia(5%) saturate(543%) hue-rotate(338deg) brightness(101%) contrast(85%);
+  }
+}
