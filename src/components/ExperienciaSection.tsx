@@ -81,7 +81,7 @@ const ExperienciaSection = () => {
             <video
               ref={videoRef}
               src={experienceVideo}
-              className="w-full h-80 object-cover cursor-pointer"
+              className="w-full aspect-video object-contain bg-black cursor-pointer"
               autoPlay
               loop
               muted
